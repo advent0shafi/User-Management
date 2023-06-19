@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand">Gates International</a>
+            <div class="d-flex">
+                {% if user.is_authenticated %}
+                <!-- Updated Sign Out button using Bootstrap classes -->
+                <a href="/signout" class="btn btn-primary ml-auto">Sign Out</a>
+                {% else %}
+                <a href="/signin" class="btn btn-primary ml-auto">Sign In</a>
+                
+            
+               
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    
+    {% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+     {{message}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+
+    {% if user.is_authenticated %}
+   
+    <section class="vh-100 bg-light">
+        <div class="container h-100">
+            <div class="row justify-content-center align-items-center h-100">
+                <div class="col-md-10 col-lg-6 col-xl-5">
+                    <div class="card text-dark" style="border-radius: 25px;">
+                        <div class="card-body p-md-5">
+                            <h3 class="text-center fw-bold mb-5">Welcome {{fname}}</h3>
+                            <p class="text-center">Your successfully logged in your </p>
+                            <div class="d-flex justify-content-center">
+                                <img src="https://media.artsper.com/artwork/1728960_1_m.jpg" class="img-fluid" alt="Sample image">
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% else %}
+   
+    <section class="vh-100 bg-light">
+        <div class="container h-100">
+            <div class="row justify-content-center align-items-center h-100">
+                <div class="col-md-10 col-lg-6 col-xl-5">
+                    <div class="card text-dark" style="border-radius: 25px;">
+                        <div class="card-body p-md-5">
+                            <h6 class="mb-4">      Sign Up for a Better Experience</h6>
+                            <div class="d-flex justify-content-center">
+                                <img src="https://wallpapercave.com/wp/wp4511328.jpg" class="img-fluid" alt="Sample image">
+                            </div>
+                            <div class="d-flex justify-content-center mt-3">
+                                <a href="/signup" class="btn btn-primary">Sign Up</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    {% endif %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
+
+
+
